@@ -1,0 +1,1589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- SEO Optimization -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxe Estates | Preeminent Luxury Real Estate</title>
+    <meta name="description" content="Discover ultra-premium micro-estates, modern masterpieces, and sanctuary villas. Luxe Estates curates unmatched architectural icons for the discerning few." />
+    
+    <!-- Google Fonts: Cormorant Garamond & Jost -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              gold: {
+                primary: '#c9a84c',
+                light: '#f0d080',
+                dark: '#9e7f30',
+              },
+              darkBg: '#07070f',
+              glass: 'rgba(255, 255, 255, 0.04)',
+              glassBorder: 'rgba(201, 168, 76, 0.15)',
+            },
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', 'serif'],
+              sans: ['"Jost"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* --- Bespoke $10,000 Design System Style Sheet --- */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #c9a84c #07070f;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #07070f;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #c9a84c;
+        border-radius: 3px;
+      }
+
+      body {
+        background-color: #07070f;
+        font-family: 'Jost', sans-serif;
+        color: #f5f0eb;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, .font-serif {
+        font-family: 'Cormorant Garamond', serif;
+      }
+
+      /* Custom Interactive Cursor */
+      #custom-cursor {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: #c9a84c;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+      #custom-cursor-ring {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease-out, border 0.3s;
+      }
+
+      /* Custom Preloader */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        background-color: #07070f;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), visibility 1s;
+      }
+
+      /* Shimmer Effect for Luxury Feeling */
+      .shimmer-bg {
+        position: relative;
+        overflow: hidden;
+      }
+      .shimmer-bg::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(251, 191, 36, 0.05) 20%,
+          rgba(251, 191, 36, 0.1) 60%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        animation: shimmer 4s infinite;
+      }
+      @keyframes shimmer {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Floating WhatsApp Button */
+      #whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        background-color: #128c7e;
+        border-radius: 50%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        transition: all 0.3s ease;
+      }
+      #whatsapp-float:hover {
+        transform: scale(1.1);
+        background-color: #075e54;
+        box-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
+      }
+      .pulse-outline {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 2px solid #128c7e;
+        animation: pulseWave 2s infinite;
+      }
+      @keyframes pulseWave {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(1.6); opacity: 0; }
+      }
+
+      /* Scroll Reveal Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform, opacity;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Gilded/Glow Borders */
+      .gold-glow {
+        box-shadow: 0 0 15px rgba(201, 168, 76, 0.05);
+        transition: box-shadow 0.4s ease, border-color 0.4s ease;
+      }
+      .gold-glow:hover {
+        box-shadow: 0 0 25px rgba(201, 168, 76, 0.2);
+        border-color: rgba(201, 168, 76, 0.4) !important;
+      }
+
+      /* Custom Navigation Transition */
+      header.navbar-scrolled {
+        background-color: rgba(7, 7, 15, 0.95);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      /* --- EXPLICIT COMPLIANT THEME DETAILS --- */
+      #hero {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #07070f;
+      }
+      canvas#particles {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+      .blob-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        filter: blur(100px);
+        opacity: 0.35;
+        overflow: hidden;
+      }
+      .blob {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+        animation: drift 25s infinite alternate ease-in-out;
+      }
+      .blob-1 {
+        background: radial-gradient(circle, rgba(201,168,76,0.3) 0%, rgba(7,7,15,0) 70%);
+        top: -10%;
+        left: -10%;
+      }
+      .blob-2 {
+        background: radial-gradient(circle, rgba(94,76,201,0.22) 0%, rgba(7,7,15,0) 70%);
+        bottom: -15%;
+        right: -10%;
+        animation-delay: -5s;
+      }
+      .blob-3 {
+        background: radial-gradient(circle, rgba(201,76,143,0.18) 0%, rgba(7,7,15,0) 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-duration: 35s;
+      }
+      @keyframes drift {
+        0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        50% { transform: translate(120px, 90px) scale(1.1) rotate(180deg); }
+        100% { transform: translate(-40px, -60px) scale(0.95) rotate(360deg); }
+      }
+
+      /* Property Card Overlay styling */
+      .property-img-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      .property-img-wrap img {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .property-card:hover .property-img-wrap img {
+        transform: scale(1.08);
+      }
+      .property-overlay {
+        background: linear-gradient(to top, rgba(7,7,15,0.9) 0%, rgba(7,7,15,0.2) 60%, rgba(7,7,15,0) 100%);
+      }
+
+      /* Testimonial slider customization */
+      .testimonial-carousel {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Custom Interactive Calendar */
+      .calendar-day-active {
+        background-color: #c9a84c !important;
+        color: #07070f !important;
+        font-weight: 600;
+        box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+      }
+      
+      /* Glass Container Styles */
+      .glass-container {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(201, 168, 76, 0.08);
+      }
+    </style>
+  </head>
+  <body class="selection:bg-gold-primary selection:text-darkBg select-none">
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+      <div class="flex flex-col items-center">
+        <!-- Logo -->
+        <div class="mb-6 unique-logo relative">
+          <i class="fa-solid fa-crown text-gold-primary text-5xl mb-2 animate-bounce"></i>
+        </div>
+        <h2 class="font-serif text-3xl tracking-[0.2em] text-[#f5f0eb] mb-1">LUXE ESTATES</h2>
+        <p class="text-[10px] tracking-[0.4em] text-gold-light uppercase mb-8">Curators of Architectural Masterpieces</p>
+        
+        <!-- Loading Bar -->
+        <div class="w-48 h-[1px] bg-glassBorder relative overflow-hidden">
+          <div id="preloader-progress" class="absolute left-0 top-0 h-full w-[0%] bg-gold-primary transition-all duration-300"></div>
+        </div>
+        <p class="text-xs font-mono text-gold-primary mt-3" id="preloader-percent">0%</p>
+      </div>
+    </div>
+
+    <!-- CUSTOM INTERACTIVE CURSOR -->
+    <div id="custom-cursor" class="hidden md:block"></div>
+    <div id="custom-cursor-ring" class="hidden md:block"></div>
+
+    <!-- FLOATING WHATSAPP MODAL -->
+    <a href="https://wa.me/919999999999" id="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp">
+      <div class="pulse-outline"></div>
+      <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 py-6 transition-all duration-500">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <!-- Brand Signature -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <i class="fa-solid fa-crown text-gold-primary text-2xl transition-transform duration-500 group-hover:rotate-12"></i>
+          <div class="flex flex-col">
+            <span class="font-serif text-xl tracking-[0.15em] text-[#f5f0eb] font-semibold leading-none">LUXE ESTATES</span>
+            <span class="text-[8px] tracking-[0.3em] text-gold-light uppercase leading-none mt-1">Lutyens' Signature</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Actions -->
+        <nav class="hidden md:flex items-center gap-10 text-xs tracking-[0.2em] uppercase font-light text-[#f5f0eb]/90">
+          <a href="#hero" class="hover:text-gold-primary transition-colors cursor-hover">Home</a>
+          <a href="#properties" class="hover:text-gold-primary transition-colors cursor-hover">The Portfolio</a>
+          <a href="#experience" class="hover:text-gold-primary transition-colors cursor-hover">Mastery</a>
+          <a href="#scheduler" class="hover:text-gold-primary transition-colors cursor-hover">Reserve Viewing</a>
+          <a href="#testimonials" class="hover:text-gold-primary transition-colors cursor-hover">Clients</a>
+          <a href="#contact" class="hover:text-gold-primary transition-colors cursor-hover">Signature Inquiry</a>
+        </nav>
+
+        <!-- CTAs -->
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#scheduler" class="border border-gold-primary/30 px-6 py-2.5 rounded-sm text-[10px] tracking-widest uppercase text-gold-primary hover:bg-gold-primary hover:text-[#07070f] transition-all duration-300 cursor-hover">
+            Private Booking
+          </a>
+        </div>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-toggle" class="md:hidden flex flex-col justify-between h-5 w-6 text-gold-primary cursor-hover" aria-label="Toggle Navigation">
+          <span class="h-[1px] w-full bg-gold-primary transition-transform duration-300 transform-origin-left"></span>
+          <span class="h-[1px] w-full bg-gold-primary transition-opacity duration-300"></span>
+          <span class="h-[1px] w-full bg-gold-primary transition-transform duration-300 transform-origin-left"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-darkBg/95 z-40 hidden flex-col justify-center items-center backdrop-blur-xl">
+      <nav class="flex flex-col gap-8 text-center text-lg tracking-[0.25em] uppercase font-serif">
+        <a href="#hero" class="mobile-nav-link text-gold-light">Home</a>
+        <a href="#properties" class="mobile-nav-link text-[#f5f0eb]/80 hover:text-gold-primary">The Portfolio</a>
+        <a href="#experience" class="mobile-nav-link text-[#f5f0eb]/80 hover:text-gold-primary">Mastery</a>
+        <a href="#scheduler" class="mobile-nav-link text-[#f5f0eb]/80 hover:text-gold-primary">Reserve Viewing</a>
+        <a href="#testimonials" class="mobile-nav-link text-[#f5f0eb]/80 hover:text-gold-primary">Clients</a>
+        <a href="#contact" class="mobile-nav-link text-[#f5f0eb]/80 hover:text-gold-primary">Signature Inquiry</a>
+        <div class="mt-8">
+          <a href="#scheduler" class="inline-block border border-gold-primary bg-gold-primary/10 px-8 py-3 rounded-sm text-[11px] tracking-widest uppercase text-gold-primary hover:bg-gold-primary hover:text-darkBg transition-all duration-500">
+            Book Private Tour
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- MANDATORY HERO SECTION — COPY EXACTLY -->
+    <section id="hero">
+      <canvas id="particles"></canvas>
+      <div class="blob-wrap">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+      </div>
+
+      <!-- Glass Overlay Card Container -->
+      <div class="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
+        <div class="glass-container shimmer-bg p-8 md:p-14 rounded-3xl border border-glassBorder/60 backdrop-blur-2xl relative overflow-hidden group">
+          
+          <span class="text-[10px] md:text-xs uppercase tracking-[0.35em] text-gold-light mb-5 block relative z-10 font-sans">PORTFOLIO OF EXTRAORDINARY LIVING</span>
+          <h1 class="font-serif text-3xl sm:text-5xl md:text-7xl font-extralight text-[#f5f0eb] leading-[1.12] mb-6 relative z-10">
+            Bespoke Residences <br>
+            <span class="font-normal italic text-gold-primary">For The Discerning</span>
+          </h1>
+          
+          <p class="font-sans text-xs sm:text-sm md:text-base text-[#f5f0eb]/70 max-w-xl mx-auto mb-10 leading-relaxed font-light relative z-10">
+            Curated list of ultra-premium floating penthouses, monumental estates, and beach sanctuaries crafted with pristine architectural integrity.
+          </p>
+          
+          <!-- Selector Panel -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-2 bg-black/50 p-2.5 rounded-2xl border border-glassBorder/55 max-w-3xl mx-auto mb-4 text-left relative z-10">
+            <div class="p-3 border-b md:border-b-0 md:border-r border-glassBorder/30">
+              <label class="block text-[9px] uppercase tracking-wider text-gold-light mb-1 font-sans">Estate Type</label>
+              <select id="filter-hero-category" class="w-full bg-transparent text-xs text-[#f5f0eb] font-sans font-normal outline-none border-none cursor-pointer focus:text-gold-light">
+                <option value="all" class="bg-darkBg">All Typologies</option>
+                <option value="villas" class="bg-darkBg">Sanctuary Villas</option>
+                <option value="penthouses" class="bg-darkBg">Sky Penthouses</option>
+                <option value="estates" class="bg-darkBg">Private Manors</option>
+              </select>
+            </div>
+            <div class="p-3 border-b md:border-b-0 md:border-r border-glassBorder/30">
+              <label class="block text-[9px] uppercase tracking-wider text-gold-light mb-1 font-sans">Region Selector</label>
+              <select class="w-full bg-transparent text-xs text-[#f5f0eb] font-sans font-normal outline-none border-none cursor-pointer focus:text-gold-light">
+                <option value="delhi" class="bg-darkBg">Lutyens' Delhi</option>
+                <option value="mumbai" class="bg-darkBg">Sea Face, Mumbai</option>
+                <option value="goa" class="bg-darkBg">Coastal, Goa</option>
+                <option value="italy" class="bg-darkBg">Lake Como, Italy</option>
+              </select>
+            </div>
+            <div class="p-3 border-b md:border-b-0 md:border-r border-glassBorder/30">
+              <label class="block text-[9px] uppercase tracking-wider text-gold-light mb-1 font-sans">Price Range</label>
+              <select class="w-full bg-transparent text-xs text-[#f5f0eb] font-sans font-normal outline-none border-none cursor-pointer focus:text-gold-light">
+                <option value="1" class="bg-darkBg">₹30Cr - ₹65Cr</option>
+                <option value="2" class="bg-darkBg">₹65Cr - ₹120Cr</option>
+                <option value="3" class="bg-darkBg">₹120Cr+ (Bespoke)</option>
+              </select>
+            </div>
+            <div class="flex items-center justify-center p-2">
+              <button onclick="scrollToSection('properties')" class="w-full h-full bg-gold-primary hover:bg-gold-light text-[#07070f] font-sans font-medium text-[10px] uppercase tracking-widest rounded-lg transition-all duration-500 transform hover:scale-[1.03] cursor-hover">
+                Enter Gallery
+              </button>
+            </div>
+          </div>
+          
+          <div class="flex justify-center items-center gap-8 mt-6 text-xs text-[#f5f0eb]/50 relative z-10 font-sans">
+            <span><i class="fa-solid fa-gem text-gold-primary mr-2"></i>Curated Estates Only</span>
+            <span class="w-1.5 h-1.5 bg-glassBorder rounded-full"></span>
+            <span><i class="fa-solid fa-shield-halved text-gold-primary mr-2"></i>Pure Discretion Assured</span>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Arrow indicator down -->
+      <a href="#properties" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gold-primary/70 hover:text-gold-primary z-10 animate-bounce cursor-hover flex flex-col items-center gap-2">
+        <span class="text-[9px] tracking-[0.3em] uppercase">The Portfolio</span>
+        <i class="fa-solid fa-chevron-down text-lg"></i>
+      </a>
+    </section>
+
+    <!-- KEY STATS SECTION -->
+    <section class="py-16 border-y border-glassBorder/20 bg-darkBg flex items-center justify-center relative overscroll-none">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <div class="reveal">
+          <h2 class="font-serif text-5xl md:text-6xl text-gold-primary font-light" data-target="2.1">0.0</h2>
+          <div class="h-[1px] bg-gold-primary/20 w-12 mx-auto my-3"></div>
+          <p class="text-xs uppercase tracking-widest text-[#f5f0eb]/60">Trillion Assets Curated</p>
+        </div>
+        <div class="reveal" data-delay="150">
+          <h2 class="font-serif text-5xl md:text-6xl text-gold-primary font-light" data-target="15">0</h2>
+          <div class="h-[1px] bg-gold-primary/20 w-12 mx-auto my-3"></div>
+          <p class="text-xs uppercase tracking-widest text-[#f5f0eb]/60">Sovereign Regions Served</p>
+        </div>
+        <div class="reveal" data-delay="300">
+          <h2 class="font-serif text-5xl md:text-6xl text-gold-primary font-light" data-target="98">0</h2>
+          <div class="h-[1px] bg-gold-primary/20 w-12 mx-auto my-3"></div>
+          <p class="text-xs uppercase tracking-widest text-[#f5f0eb]/60">UHNW Retention Rate %</p>
+        </div>
+        <div class="reveal" data-delay="450">
+          <h2 class="font-serif text-5xl md:text-6xl text-gold-primary font-light" data-target="320">0</h2>
+          <div class="h-[1px] bg-gold-primary/20 w-12 mx-auto my-3"></div>
+          <p class="text-xs uppercase tracking-widest text-[#f5f0eb]/60">Estates Brokered</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTIES FILTERABLE SHOWCASE -->
+    <section id="properties" class="py-24 md:py-32 bg-darkBg relative">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-16 reveal">
+          <div>
+            <span class="text-[10px] tracking-[0.3em] text-gold-primary uppercase block mb-3 font-sans">THE ARCHITECTURAL TREASURY</span>
+            <h2 class="font-serif text-4xl md:text-6xl font-light leading-none">Curated <br><span class="italic font-normal text-gold-primary">Masterpieces</span></h2>
+          </div>
+          
+          <!-- Category Filter Tabs -->
+          <div id="property-filters" class="flex flex-wrap items-center gap-3 mt-8 md:mt-0 border-b md:border-none border-glassBorder/10 pb-4 md:pb-0">
+            <button onclick="filterProperties('all')" class="filter-tab active font-sans px-5 py-2.5 rounded-sm text-xs tracking-widest uppercase border border-gold-primary text-gold-primary bg-gold-primary/10 transition-all duration-300 cursor-hover">
+              All Typologies
+            </button>
+            <button onclick="filterProperties('villas')" class="filter-tab font-sans px-5 py-2.5 rounded-sm text-xs tracking-widest uppercase border border-glassBorder/10 text-[#f5f0eb]/70 hover:border-gold-primary/30 hover:text-gold-primary transition-all duration-300 cursor-hover">
+              Sanctuary Villas
+            </button>
+            <button onclick="filterProperties('penthouses')" class="filter-tab font-sans px-5 py-2.5 rounded-sm text-xs tracking-widest uppercase border border-glassBorder/10 text-[#f5f0eb]/70 hover:border-gold-primary/30 hover:text-gold-primary transition-all duration-300 cursor-hover">
+              Sky Penthouses
+            </button>
+            <button onclick="filterProperties('estates')" class="filter-tab font-sans px-5 py-2.5 rounded-sm text-xs tracking-widest uppercase border border-glassBorder/10 text-[#f5f0eb]/70 hover:border-gold-primary/30 hover:text-gold-primary transition-all duration-300 cursor-hover">
+              Private Manors
+            </button>
+          </div>
+        </div>
+
+        <!-- Property Grid -->
+        <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          
+          <!-- Card 1: Elysium -->
+          <div class="property-card reveal filter-item villas mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="villas">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Elysium Sanctuary" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">VILLA</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-gold-light uppercase block mb-1">Amrita Shergill, Lutyens' Delhi</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">The Elysium Sanctuary</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                An architectural monument utilizing negative space layouts, fully enclosed courtyard pathways, and custom dynamic water walls.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">14,200 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">6 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Lap Pool</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹85 Crore</span>
+                <button onclick="openBooking('The Elysium Sanctuary')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Aurora -->
+          <div class="property-card reveal filter-item penthouses mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="penthouses" data-delay="150">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Aurora Sky" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">PENTHOUSE</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-gold-light uppercase block mb-1">Worli Sea Face, Mumbai</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">Aurora Sky Penthouse</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                Floating high above the Arabian Sea, featuring full panoramic double-height sheets of architectural structural glass.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">7,200 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">4 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Infinity Pool</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹45 Crore</span>
+                <button onclick="openBooking('Aurora Sky Penthouse')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Zephyr -->
+          <div class="property-card reveal filter-item estates mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="estates" data-delay="300">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Zephyr Manor" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">MANOR</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-gold-light uppercase block mb-1">Candolim Cliffs, Goa</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">Zephyr Coast Manor</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                Framed perfectly by lush seaside rocks, this sanctuary includes a cliffside glass viewing pod and secret sea access.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">11,500 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">5 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Private Beach</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹60 Crore</span>
+                <button onclick="openBooking('Zephyr Coast Manor')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Mayfair Sovereign -->
+          <div class="property-card reveal filter-item penthouses mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="penthouses" data-delay="100">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Mayfair Loft" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">LOFT</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-gold-light uppercase block mb-1">Belgravia, London</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">Mayfair Sovereign Loft</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                Classical modern architectural fusion containing original hand-molded Edwardian gilded cornicing and ceiling frames.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">5,500 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">3 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Gilded Salon</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹125 Crore</span>
+                <button onclick="openBooking('Mayfair Sovereign Loft')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Como -->
+          <div class="property-card reveal filter-item estates mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="estates" data-delay="200">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Lake Como" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">ESTATE</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-gold-light uppercase block mb-1">Como, Lake Como, Italy</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">Aetheria Residence</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                Stately coastal palazzo with private luxury helipad access, a separate master boathouse, and beautiful classic gardens.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">16,500 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">7 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Private Dock</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹160 Crore</span>
+                <button onclick="openBooking('Aetheria Villa')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Obsidian Oasis -->
+          <div class="property-card reveal filter-item villas mx-auto w-full max-w-md bg-glass shadow-2xl rounded-2xl border border-glassBorder/20 overflow-hidden gold-glow relative group" data-category="villas" data-delay="300">
+            <div class="property-img-wrap h-72 md:h-80 w-full bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Obsidian Oasis" class="w-full h-full object-cover group-hover:scale-110 duration-1000" referrerPolicy="no-referrer" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#07070f] via-[#07070f]/20 to-transparent"></div>
+              <span class="absolute top-4 right-4 bg-gold-primary/95 text-darkBg text-[9px] uppercase tracking-widest font-semibold px-3 py-1 rounded-sm">VILLA</span>
+            </div>
+            
+            <div class="p-6 md:p-8 relative">
+              <span class="text-[9px] tracking-widest text-[#c9a84c] uppercase block mb-1">Alibaug, Maharashtra</span>
+              <h3 class="font-serif text-2xl sm:text-3xl text-white font-light group-hover:text-gold-primary transition-colors mb-3">The Obsidian Oasis</h3>
+              <p class="text-xs text-[#f5f0eb]/60 font-light leading-relaxed mb-6">
+                Sleek geometric minimalist architecture blending charcoal concrete slabs with continuous surrounding koi pathways.
+              </p>
+              
+              <div class="grid grid-cols-3 gap-3 border-t border-glassBorder/20 pt-4 mb-6 text-center text-[#f5f0eb]/70">
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">AREA</span>
+                  <span class="text-xs font-semibold">9,000 sq ft</span>
+                </div>
+                <div class="border-x border-glassBorder/20">
+                  <span class="block text-[10px] text-gold-light font-mono">SUITES</span>
+                  <span class="text-xs font-semibold">4 Beds</span>
+                </div>
+                <div>
+                  <span class="block text-[10px] text-gold-light font-mono">SANCTUARY</span>
+                  <span class="text-xs font-semibold">Koi Pool</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <span class="font-serif text-xl sm:text-2xl text-gold-primary font-normal leading-none">₹38 Crore</span>
+                <button onclick="openBooking('The Obsidian Oasis')" class="border border-gold-primary/30 hover:border-gold-primary bg-gold-primary/5 hover:bg-gold-primary hover:text-darkBg px-5 py-2 rounded-sm text-[10px] tracking-widest uppercase transition-all duration-300 font-sans cursor-hover">
+                  View Detail & Schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COHESIVE THEME FEATURES SHOWCASE -->
+    <section id="experience" class="py-24 md:py-32 bg-black/60 relative border-t border-glassBorder/25">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+          <span class="text-[10px] tracking-[0.3em] text-gold-primary uppercase block mb-3">THE HALLMARKS OF ADVANCED MASTERY</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-light">Unrivaled <span class="italic text-gold-primary font-normal">Privileges</span></h2>
+          <p class="font-sans text-xs sm:text-sm text-[#f5f0eb]/50 mt-4 leading-relaxed">
+            Our properties are designed to address the highest tiers of physical structural integrity, bespoke sensory comfort, and security.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <!-- Feature 1 -->
+          <div class="reveal glass-container p-8 md:p-10 rounded-2xl border border-glassBorder/10 hover:-translate-y-2 duration-500 ease-out flex flex-col items-start">
+            <div class="w-14 h-14 rounded-full bg-gold-primary/5 flex items-center justify-center border border-gold-primary/35 mb-6 text-xl text-gold-primary">
+              <i class="fa-solid fa-hotel"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-light text-white mb-3">Heliport & Lagoon Access</h3>
+            <p class="text-xs text-[#f5f0eb]/70 leading-relaxed font-light mb-4">
+              Direct connection points for rotorcraft arrivals and shallow boat harbors integrated directly into listing specifications.
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="reveal glass-container p-8 md:p-10 rounded-2xl border border-glassBorder/10 hover:-translate-y-2 duration-500 ease-out flex flex-col items-start" data-delay="150">
+            <div class="w-14 h-14 rounded-full bg-gold-primary/5 flex items-center justify-center border border-gold-primary/35 mb-6 text-xl text-gold-primary">
+              <i class="fa-solid fa-fingerprint"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-light text-white mb-3">Subterranean Safe Rooms</h3>
+            <p class="text-xs text-[#f5f0eb]/70 leading-relaxed font-light mb-4">
+              Discreet ballistic core shelters engineered with custom air-scrubbing loops and fully localized power-backup terminals.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="reveal glass-container p-8 md:p-10 rounded-2xl border border-glassBorder/10 hover:-translate-y-2 duration-500 ease-out flex flex-col items-start" data-delay="300">
+            <div class="w-14 h-14 rounded-full bg-gold-primary/5 flex items-center justify-center border border-gold-primary/35 mb-6 text-xl text-gold-primary">
+              <i class="fa-solid fa-wine-glass-empty"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-light text-white mb-3">Bespoke Gilded Cellars</h3>
+            <p class="text-xs text-[#f5f0eb]/70 leading-relaxed font-light mb-4">
+              Precision climate environments designed specifically for preserving the most exquisite vintages in conditions of zero vibration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BOOKING & SCHEDULER SECTION -->
+    <section id="scheduler" class="py-24 md:py-32 bg-darkBg relative border-t border-glassBorder/20">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Column 1: Info and selection -->
+          <div class="lg:col-span-5 reveal">
+            <span class="text-[10px] tracking-[0.3em] text-gold-primary uppercase block mb-3 font-sans">RESERVE A PRIVATE SHOWING</span>
+            <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">Coordinate Your <br><span class="italic text-gold-primary font-normal">Private Tour</span></h2>
+            <p class="font-sans text-xs sm:text-sm text-[#f5f0eb]/60 leading-relaxed mb-8">
+              Bespoke visual tours of our listings are conducted strictly during hours of perfect daylight. Reserve your time slot with our master curators.
+            </p>
+            
+            <div class="glass-container p-6 rounded-xl border border-glassBorder/20 mb-6">
+              <label class="block text-[10px] uppercase tracking-widest text-gold-light mb-3">Selected Sanctuary Residence</label>
+              <div class="flex items-center gap-4 bg-black/40 p-3 rounded-lg border border-glassBorder/10">
+                <i class="fa-solid fa-gothic text-gold-primary text-xl"></i>
+                <div class="flex-1">
+                  <select id="schedule-property-select" class="w-full bg-transparent text-sm text-white font-sans font-normal outline-none border-none cursor-pointer">
+                    <option value="The Elysium Sanctuary" class="bg-darkBg">The Elysium Sanctuary (₹85 Cr)</option>
+                    <option value="Aurora Sky Penthouse" class="bg-darkBg">Aurora Sky Penthouse (₹45 Cr)</option>
+                    <option value="Zephyr Coast Manor" class="bg-darkBg">Zephyr Coast Manor (₹60 Cr)</option>
+                    <option value="Mayfair Sovereign Loft" class="bg-darkBg">Mayfair Sovereign Loft (₹125 Cr)</option>
+                    <option value="Aetheria Residence" class="bg-darkBg">Aetheria Residence (₹160 Cr)</option>
+                    <option value="The Obsidian Oasis" class="bg-darkBg">The Obsidian Oasis (₹38 Cr)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Confirmed selection box -->
+            <div id="booking-invoice" class="hidden glass-container p-6 rounded-xl border border-gold-primary/30 bg-gold-primary/5">
+              <h4 class="font-serif text-lg text-gold-primary mb-2">Private Appointment Details</h4>
+              <p class="text-xs text-[#f5f0eb]/80 leading-relaxed font-light mb-1" id="invoice-estate-name">Estate: -</p>
+              <p class="text-xs text-[#f5f0eb]/80 leading-relaxed font-light mb-1" id="invoice-date-time">Schedule Date: -</p>
+              <p class="text-xs text-gold-light font-mono text-[10px] uppercase tracking-widest mt-3"><i class="fa-solid fa-bell mr-1.5"></i>Curated security pass will be sent via SMS.</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Calendar UI -->
+          <div class="lg:col-span-7 reveal glass-container p-6 md:p-8 rounded-2xl border border-glassBorder/20">
+            <h3 class="font-serif text-2xl text-white font-light text-center mb-6">Interactive Viewing Calendar</h3>
+            
+            <!-- Month controller -->
+            <div class="flex items-center justify-between mb-6 px-2">
+              <button onclick="changeMonth(-1)" class="w-8 h-8 rounded-full border border-glassBorder/40 flex items-center justify-center text-[#f5f0eb] hover:border-gold-primary hover:text-gold-primary transition duration-300">
+                <i class="fa-solid fa-chevron-left text-xs"></i>
+              </button>
+              <h3 id="calendar-month-year" class="font-serif text-xl tracking-widest text-[#f5f0eb] capitalize">-</h3>
+              <button onclick="changeMonth(1)" class="w-8 h-8 rounded-full border border-glassBorder/40 flex items-center justify-center text-[#f5f0eb] hover:border-gold-primary hover:text-gold-primary transition duration-300">
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+              </button>
+            </div>
+
+            <!-- Calendar Days -->
+            <div class="grid grid-cols-7 gap-2 text-center text-xs tracking-widest font-sans uppercase mb-4 text-gold-light/80">
+              <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            </div>
+            <div id="calendar-days-container" class="grid grid-cols-7 gap-2 mb-8">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Available Slots Indicator -->
+            <div class="mb-6">
+              <span class="block text-[10px] uppercase tracking-widest text-gold-light mb-3">Select Available Time Slot</span>
+              <div class="grid grid-cols-3 gap-3" id="time-slots-container">
+                <button onclick="selectTimeSlot(this, '10:00 AM')" class="time-slot border border-glassBorder/30 bg-black/40 text-[#f5f0eb] text-xs py-2.5 rounded-md hover:border-gold-primary transition-all duration-300 cursor-hover">10:00 AM</button>
+                <button onclick="selectTimeSlot(this, '01:00 PM')" class="time-slot border border-glassBorder/30 bg-black/40 text-[#f5f0eb] text-xs py-2.5 rounded-md hover:border-gold-primary transition-all duration-300 cursor-hover">01:00 PM</button>
+                <button onclick="selectTimeSlot(this, '04:00 PM')" class="time-slot border border-glassBorder/30 bg-black/40 text-[#f5f0eb] text-xs py-2.5 rounded-md hover:border-gold-primary transition-all duration-300 cursor-hover">04:00 PM</button>
+              </div>
+            </div>
+
+            <!-- Client Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label class="block text-[9px] uppercase tracking-wider text-gold-light mb-1">Full Name</label>
+                <input type="text" id="schedule-name" placeholder="Lord Somesh" class="w-full bg-black/50 text-xs text-white p-3 rounded-lg border border-glassBorder/40 outline-none focus:border-gold-primary transition-all duration-300" />
+              </div>
+              <div>
+                <label class="block text-[9px] uppercase tracking-wider text-gold-light mb-1">Encrypted Mobile No.</label>
+                <input type="tel" id="schedule-phone" placeholder="+91 9999999999" class="w-full bg-black/50 text-xs text-white p-3 rounded-lg border border-glassBorder/40 outline-none focus:border-gold-primary transition-all duration-300" />
+              </div>
+            </div>
+
+            <button onclick="confirmSchedule()" class="w-full bg-gold-primary hover:bg-gold-light text-darkBg font-sans font-medium text-xs uppercase tracking-widest py-4 rounded-lg transition-all duration-300 cursor-hover">
+              Complete Reservation
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS CINEMATIC CAROUSEL -->
+    <section id="testimonials" class="py-24 md:py-32 bg-black/40 relative border-t border-glassBorder/20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+          <span class="text-[10px] tracking-[0.3em] text-gold-primary uppercase block mb-3 font-sans">CLIENT COMMENDATIONS</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-light">The Discerning <span class="italic text-gold-primary font-normal">Voices</span></h2>
+        </div>
+
+        <div class="relative max-w-4xl mx-auto overflow-hidden reveal">
+          <!-- Slide Wrap -->
+          <div class="testimonial-carousel" id="testimonial-carousel-slider">
+            
+            <!-- Slide 1 -->
+            <div class="w-full flex-shrink-0 px-4 md:px-12 text-center flex flex-col items-center">
+              <div class="flex items-center gap-1.5 text-gold-primary text-sm mb-4">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="font-serif text-lg sm:text-2xl md:text-3xl text-[#f5f0eb]/90 leading-relaxed font-light mb-8">
+                "Finding an estate that meets our high standards of privacy, structural aesthetic safety, and heliport access was extremely difficult. Luxe Estates delivered the Elysium Sanctuary flawlessly."
+              </p>
+              <div class="flex items-center gap-4 text-left">
+                <div class="w-12 h-12 bg-zinc-800 rounded-full overflow-hidden border border-gold-primary/30">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Client 1" class="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h4 class="font-sans text-xs tracking-wider uppercase text-gold-light mt-1">H.R.H. Devendra Pratap Singh</h4>
+                  <p class="text-[10px] text-[#f5f0eb]/50 font-light">Lutyens' Advisory Committee</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="w-full flex-shrink-0 px-4 md:px-12 text-center flex flex-col items-center">
+              <div class="flex items-center gap-1.5 text-gold-primary text-sm mb-4">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="font-serif text-lg sm:text-2xl md:text-3xl text-[#f5f0eb]/90 leading-relaxed font-light mb-8">
+                "Their standard of absolute discretion and professional efficiency is unrivaled in India. Every listing presented was an authentic architectural masterpieces."
+              </p>
+              <div class="flex items-center gap-4 text-left">
+                <div class="w-12 h-12 bg-zinc-800 rounded-full overflow-hidden border border-gold-primary/30">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Client 2" class="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h4 class="font-sans text-xs tracking-wider uppercase text-gold-light mt-1">Aditi Roy Singhal</h4>
+                  <p class="text-[10px] text-[#f5f0eb]/50 font-light">UHNW Venture Syndicate Partner</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slider Indicators -->
+          <div class="flex justify-center items-center gap-2 mt-12">
+            <button onclick="setTestimonialSlide(0)" class="nav-dot w-2 h-2 rounded-full bg-gold-primary transition duration-300" aria-label="Slide 1"></button>
+            <button onclick="setTestimonialSlide(1)" class="nav-dot w-2 h-2 rounded-full bg-glassBorder transition duration-300" aria-label="Slide 2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD CAPTURE FORM / CONTACT SECTION -->
+    <section id="contact" class="py-24 md:py-32 bg-darkBg relative border-t border-glassBorder/20">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          
+          <!-- Column 1: Copy/Contact Meta -->
+          <div class="lg:col-span-5 reveal">
+            <span class="text-[10px] tracking-[0.3em] text-gold-primary uppercase block mb-3 font-sans">EXPERIENCE PRECISION DISCRETION</span>
+            <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-8">Initiate Your <br><span class="italic text-gold-primary font-normal">Exclusive Portfolio</span></h2>
+            
+            <p class="font-sans text-xs sm:text-sm text-[#f5f0eb]/60 leading-relaxed max-w-md mb-10">
+              Connect with our senior partners directly for highly private listing placements or custom bespoke architectural searches.
+            </p>
+
+            <div class="flex flex-col gap-6">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 border border-gold-primary/30 rounded-full flex items-center justify-center text-gold-primary text-sm">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <span class="block text-[8px] tracking-wider uppercase text-gold-light">Encrypted Hotline</span>
+                  <span class="font-serif text-lg tracking-wide text-white">+91 11 4455 6677</span>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 border border-gold-primary/30 rounded-full flex items-center justify-center text-gold-primary text-sm">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <span class="block text-[8px] tracking-wider uppercase text-gold-light">Direct Correspondence</span>
+                  <span class="font-serif text-lg tracking-wide text-white">partners@luxeestates.in</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 border border-gold-primary/30 rounded-full flex items-center justify-center text-gold-primary text-sm">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div>
+                  <span class="block text-[8px] tracking-wider uppercase text-gold-light">Signature Lounge</span>
+                  <span class="font-serif text-lg tracking-wide text-white">Prithviraj Road, Lutyens' Delhi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Elegant Form -->
+          <div class="lg:col-span-7 reveal glass-container p-8 md:p-10 rounded-2xl border border-glassBorder/20 relative overflow-hidden">
+            <div class="shimmer-effect"></div>
+            <h3 class="font-serif text-2xl text-white font-light mb-6 text-center lg:text-left">Immediate Partner Correspondence</h3>
+            
+            <form id="leadForm" onsubmit="handleInquiry(event)" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-[10px] uppercase tracking-widest text-[#f5f0eb]/60 mb-2">Salutation</label>
+                  <select class="w-full bg-black/60 p-3 rounded-lg border border-glassBorder/50 text-xs text-white outline-none focus:border-gold-primary transition duration-300">
+                    <option value="hrh">His/Her Royal Highness</option>
+                    <option value="lord">Lord/Lady</option>
+                    <option value="sir">Sir/Madam</option>
+                    <option value="mr">Mr/Ms</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] uppercase tracking-widest text-[#f5f0eb]/60 mb-2">Full Given Name</label>
+                  <input type="text" required placeholder="Lord Vikramaditya Singh" class="w-full bg-black/60 p-3 rounded-lg border border-glassBorder/50 text-xs text-white outline-none focus:border-gold-primary transition duration-300" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-[10px] uppercase tracking-widest text-[#f5f0eb]/60 mb-2">Private Email</label>
+                  <input type="email" required placeholder="vikram@sovereign.in" class="w-full bg-black/60 p-3 rounded-lg border border-glassBorder/50 text-xs text-white outline-none focus:border-gold-primary transition duration-300" />
+                </div>
+                <div>
+                  <label class="block text-[10px] uppercase tracking-widest text-[#f5f0eb]/60 mb-2">Direct Mobile No.</label>
+                  <input type="tel" required placeholder="+91 99999 55555" class="w-full bg-black/60 p-3 rounded-lg border border-glassBorder/50 text-xs text-white outline-none focus:border-gold-primary transition duration-300" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[10px] uppercase tracking-widest text-[#f5f0eb]/60 mb-2">Specific Architectural Mandate Details</label>
+                <textarea rows="4" placeholder="Briefly specify your location bounds and secure parking specifications..." class="w-full bg-black/60 p-3 rounded-lg border border-glassBorder/50 text-xs text-white outline-none focus:border-gold-primary transition duration-300"></textarea>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <input type="checkbox" required id="consent" class="accent-gold-primary border-glassBorder" />
+                <label for="consent" class="text-[10px] text-[#f5f0eb]/50 font-light">
+                  I consent to the high-security storage of this metadata as per NDA regulations.
+                </label>
+              </div>
+
+              <button type="submit" class="w-full bg-gold-primary hover:bg-gold-light text-darkBg font-sans font-medium text-xs uppercase tracking-widest py-4 rounded-lg transition-all duration-300 cursor-hover">
+                Submit Mandate to Partner Panel
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SOPHISTICATED BRAND FOOTER -->
+    <footer class="py-16 md:py-20 bg-darkBg border-t border-glassBorder/10 relative">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          
+          <!-- Column 1: Brand pitch -->
+          <div class="flex flex-col items-start gap-4">
+            <a href="#hero" class="flex items-center gap-3 group">
+              <i class="fa-solid fa-crown text-gold-primary text-xl"></i>
+              <span class="font-serif text-lg tracking-[0.15em] text-[#f5f0eb] font-semibold">LUXE ESTATES</span>
+            </a>
+            <p class="text-xs text-[#f5f0eb]/50 leading-relaxed font-light">
+              Providing curated real estate counsel to sovereign royals, diplomats, corporate builders, and elite clients worldwide.
+            </p>
+            <div class="flex items-center gap-4 mt-2">
+              <a href="#" class="text-[#f5f0eb]/50 hover:text-gold-primary transition cursor-hover" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="text-[#f5f0eb]/50 hover:text-gold-primary transition cursor-hover" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="text-[#f5f0eb]/50 hover:text-gold-primary transition cursor-hover" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <!-- Column 2: Navigation Links -->
+          <div>
+            <h4 class="font-serif text-gold-light tracking-wider text-sm mb-4">The Collections</h4>
+            <div class="flex flex-col gap-2 text-xs font-light text-[#f5f0eb]/70">
+              <a href="#properties" onclick="filterProperties('villas')" class="hover:text-gold-primary transition cursor-hover">Sanctuary Villas</a>
+              <a href="#properties" onclick="filterProperties('penthouses')" class="hover:text-gold-primary transition cursor-hover">Sky Penthouses</a>
+              <a href="#properties" onclick="filterProperties('estates')" class="hover:text-gold-primary transition cursor-hover">Sovereign Manors</a>
+              <a href="#properties" onclick="filterProperties('all')" class="hover:text-gold-primary transition cursor-hover">The Global Gallery</a>
+            </div>
+          </div>
+
+          <!-- Column 3: Regional Hubs -->
+          <div>
+            <h4 class="font-serif text-gold-light tracking-wider text-sm mb-4">Sovereign Lounges</h4>
+            <div class="flex flex-col gap-2 text-xs font-light text-[#f5f0eb]/70">
+              <span>Lutyens' Delhi Office</span>
+              <span>Worli High Rise Lounge, Mumbai</span>
+              <span>Mayfair Central, London</span>
+              <span>Lake Como Palazzo, Italy</span>
+            </div>
+          </div>
+
+          <!-- Column 4: Newsletter -->
+          <div>
+            <h4 class="font-serif text-gold-light tracking-wider text-sm mb-4">Signature Newsletter</h4>
+            <p class="text-xs text-[#f5f0eb]/50 font-light mb-4">Register to receive secure updates of unlisted properties beforehand.</p>
+            <div class="flex items-center bg-black/60 p-1.5 rounded-lg border border-glassBorder/40">
+              <input type="email" placeholder="lord@sovereign.in" class="bg-transparent text-xs text-white p-2 outline-none flex-1 font-light" />
+              <button onclick="alert('Correspondence secured. You will be placed on our premium private roster.')" class="bg-gold-primary hover:bg-gold-light text-[#07070f] p-2 rounded-md transition duration-300 cursor-hover">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="h-[1px] bg-glassBorder/10 w-full mb-8"></div>
+
+        <!-- Copyright block -->
+        <div class="flex flex-col md:flex-row items-center justify-between text-[10px] text-[#f5f0eb]/40 font-light text-center gap-4">
+          <p>© 2026 LUXE ESTATES LIMITED. ALL PORTFOLIOS BROKERED WITH INTELLECTUAL NDA DISCRETION.</p>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-gold-primary transition cursor-hover min-w-[50px] inline-block">SECURE POLICY</a>
+            <a href="#" class="hover:text-gold-primary transition cursor-hover min-w-[50px] inline-block">NDA CHARTER</a>
+            <a href="#" class="hover:text-gold-primary transition cursor-hover min-w-[50px] inline-block">UHNW REGULATION</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- --- JAVASCRIPT LOGIC BLOCK --- -->
+    <script>
+      // Global Page State
+      let selectedDateStr = "";
+      let selectedTimeStr = "";
+      let activeTestimonialIndex = 0;
+      let calendarMonthYearHeader = document.getElementById("calendar-month-year");
+      let calendarDaysContainer = document.getElementById("calendar-days-container");
+
+      // Set initial calendar properties
+      let currentCalendarDate = new Date(); // Year-Month to render
+
+      // Initialize Custom Interactive Dual Cursor
+      const cursorDot = document.getElementById("custom-cursor");
+      const cursorRing = document.getElementById("custom-cursor-ring");
+
+      document.addEventListener("mousemove", (e) => {
+        cursorDot.style.left = e.clientX + 'px';
+        cursorDot.style.top = e.clientY + 'px';
+        
+        // Ring tracking with minor dampening lag
+        cursorRing.animate({
+          left: e.clientX + 'px',
+          top: e.clientY + 'px'
+        }, { duration: 150, fill: "forwards" });
+      });
+
+      // Hover expansion effects with standard target list
+      const applyCursorEffects = () => {
+        const hoverables = document.querySelectorAll(".cursor-hover, a, button, select, input, select option, textarea");
+        hoverables.forEach(el => {
+          el.addEventListener("mouseenter", () => {
+            cursorDot.style.width = "18px";
+            cursorDot.style.height = "18px";
+            cursorDot.style.backgroundColor = '#f0d080';
+            cursorRing.style.borderColor = '#c9a84c';
+            cursorRing.style.transform = "translate(-50%, -50%) scale(1.4)";
+          });
+          el.addEventListener("mouseleave", () => {
+            cursorDot.style.width = "8px";
+            cursorDot.style.height = "8px";
+            cursorDot.style.backgroundColor = '#c9a84c';
+            cursorRing.style.borderColor = 'rgba(201, 168, 76, 0.3)';
+            cursorRing.style.transform = "translate(-50%, -50%) scale(1)";
+          });
+        });
+      };
+
+      // PRELOADER PROGRESS LOOPER
+      document.addEventListener("DOMContentLoaded", () => {
+        let percent = 0;
+        const progress = document.getElementById("preloader-progress");
+        const percentTxt = document.getElementById("preloader-percent");
+        const preloader = document.getElementById("preloader");
+        
+        const loader = setInterval(() => {
+          percent += Math.floor(Math.random() * 15) + 3;
+          if(percent >= 100) {
+            percent = 100;
+            clearInterval(loader);
+            setTimeout(() => {
+              preloader.style.opacity = "0";
+              preloader.style.visibility = "hidden";
+              // Trigger first stats animation loop immediately
+              triggerStatsCountLoop();
+            }, 600);
+          }
+          progress.style.width = percent + "%";
+          percentTxt.innerText = percent + "%";
+        }, 100);
+
+        initializeCalendar();
+        applyCursorEffects();
+      });
+
+      // MOBILE OVERLAY ACCORDION TRANSITIONS
+      const mobileToggle = document.getElementById("mobile-menu-toggle");
+      const mobileOverlay = document.getElementById("mobile-menu-overlay");
+      const lines = mobileToggle.querySelectorAll("span");
+
+      mobileToggle.addEventListener("click", () => {
+        const isClosed = mobileOverlay.classList.contains("hidden");
+        
+        if (isClosed) {
+          mobileOverlay.classList.remove("hidden");
+          mobileOverlay.classList.add("flex");
+          lines[0].style.transform = "translateY(9px) rotate(45deg)";
+          lines[1].style.opacity = "0";
+          lines[2].style.transform = "translateY(-9px) rotate(-45deg)";
+        } else {
+          mobileOverlay.classList.add("hidden");
+          mobileOverlay.classList.remove("flex");
+          lines[0].style.transform = "none";
+          lines[1].style.opacity = "1";
+          lines[2].style.transform = "none";
+        }
+      });
+
+      // Handle raw clicks inside mobile link overlays to scroll properly
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+      mobileLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href").substring(1);
+          scrollToSection(targetId);
+          // toggle menu off
+          mobileOverlay.classList.add("hidden");
+          mobileOverlay.classList.remove("flex");
+          lines[0].style.transform = "none";
+          lines[1].style.opacity = "1";
+          lines[2].style.transform = "none";
+        });
+      });
+
+      // SCROLL NAVIGATION TRANSITIONS 
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if(window.scrollY > 50) {
+          header.classList.add("navbar-scrolled");
+        } else {
+          header.classList.remove("navbar-scrolled");
+        }
+      });
+
+      // INTERACTIVE PARTICLE VECTOR CANVAS SYSTEM (EXACT STYLES COMPLIANT)
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let particlesArray = [];
+      let mouseCoordinates = { x: null, y: null, radius: 150 };
+
+      // Make canvas size fluid
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      window.addEventListener("mousemove", (e) => {
+        mouseCoordinates.x = e.clientX;
+        mouseCoordinates.y = e.clientY;
+      });
+      window.addEventListener("mouseleave", () => {
+        mouseCoordinates.x = null;
+        mouseCoordinates.y = null;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.8; // fine dust sized
+          this.speedX = Math.random() * 0.4 - 0.2; // delicate drifting speeds
+          this.speedY = Math.random() * 0.4 - 0.2;
+          this.opacity = Math.random() * 0.6 + 0.2;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          // boundaries bounce
+          if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+          if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+
+          // mouse interactive repell vector loop
+          if (mouseCoordinates.x !== null) {
+            let dx = this.x - mouseCoordinates.x;
+            let dy = this.y - mouseCoordinates.y;
+            let distSq = dx*dx + dy*dy;
+            if (distSq < mouseCoordinates.radius * mouseCoordinates.radius) {
+              let force = (mouseCoordinates.radius - Math.sqrt(distSq)) / mouseCoordinates.radius;
+              let angle = Math.atan2(dy, dx);
+              this.x += Math.cos(angle) * force * 1.5;
+              this.y += Math.sin(angle) * force * 1.5;
+            }
+          }
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201, 168, 76, ${this.opacity})`;
+          ctx.shadowBlur = 5;
+          ctx.shadowColor = "#f0d080";
+          ctx.fill();
+          ctx.shadowBlur = 0; // reset
+        }
+      }
+
+      function initParticles() {
+        particlesArray = [];
+        const count = Math.min(Math.floor(canvas.width / 16), 110);
+        for (let i = 0; i < count; i++) {
+          particlesArray.push(new Particle());
+        }
+      }
+      initParticles();
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        for (let i = 0; i < particlesArray.length; i++) {
+          particlesArray[i].update();
+          particlesArray[i].draw();
+
+          // Connective constellations vectors
+          for (let j = i + 1; j < particlesArray.length; j++) {
+            let dx = particlesArray[i].x - particlesArray[j].x;
+            let dy = particlesArray[i].y - particlesArray[j].y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+              ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+              let opacity = (1 - (dist / 110)) * 0.15;
+              ctx.strokeStyle = `rgba(201, 168, 76, ${opacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+      window.addEventListener("resize", initParticles);
+
+      // SCROLL REVEAL INTERSECTION OBSERVER
+      const observerOptions = {
+        root: null,
+        threshold: 0.1,
+        rootMargin: "0px"
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const delay = entry.target.getAttribute("data-delay");
+            if (delay) {
+              setTimeout(() => {
+                entry.target.classList.add("active");
+              }, parseInt(delay));
+            } else {
+              entry.target.classList.add("active");
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".reveal").forEach(el => {
+        revealObserver.observe(el);
+      });
+
+      // INDEXED STATS INCREMENTAL COUNT SYSTEM
+      function triggerStatsCountLoop() {
+        const statsHeaders = document.querySelectorAll("[data-target]");
+        statsHeaders.forEach(stat => {
+          const target = parseFloat(stat.getAttribute("data-target"));
+          const isDecimal = target % 1 !== 0;
+          let current = 0;
+          const speed = target / 80;
+          
+          const counter = setInterval(() => {
+            current += speed;
+            if (current >= target) {
+              clearInterval(counter);
+              stat.innerText = isDecimal ? target.toFixed(1) + "T" : target + "+";
+            } else {
+              stat.innerText = isDecimal ? current.toFixed(1) : Math.floor(current);
+            }
+          }, 25);
+        });
+      }
+
+      // SMOOTH PAGE SMOOTH SCROLL ROUTINE
+      function scrollToSection(id) {
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          const offsetTop = targetElement.offsetTop - 80; // height adjustment for navbar
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      }
+
+      // GALLERY PROPERTIES SHOWCASE FILTER GRID
+      function filterProperties(category) {
+        // Change Active Class in filter buttons
+        const tabs = document.querySelectorAll(".filter-tab");
+        tabs.forEach(tab => {
+          tab.classList.remove("active", "border-gold-primary", "text-gold-primary", "bg-gold-primary/10");
+          tab.classList.add("border-glassBorder/10", "text-[#f5f0eb]/70");
+          
+          const tabClickAttr = tab.getAttribute("onclick");
+          if (tabClickAttr && tabClickAttr.includes(`'${category}'`)) {
+            tab.classList.remove("border-glassBorder/10", "text-[#f5f0eb]/70");
+            tab.classList.add("active", "border-gold-primary", "text-gold-primary", "bg-gold-primary/10");
+          }
+        });
+
+        // Loop Filter Card Entities
+        const items = document.querySelectorAll(".filter-item");
+        items.forEach(item => {
+          const cat = item.getAttribute("data-category");
+          
+          if(category === 'all' || cat === category) {
+            item.style.display = "block";
+            setTimeout(() => {
+              item.style.transform = "scale(1)";
+              item.style.opacity = "1";
+            }, 50);
+          } else {
+            item.style.transform = "scale(0.8)";
+            item.style.opacity = "0";
+            setTimeout(() => {
+              item.style.display = "none";
+            }, 400);
+          }
+        });
+      }
+
+      // INTERACTIVE CALENDAR BUILDING SCRIPTS
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+      function initializeCalendar() {
+        const year = currentCalendarDate.getFullYear();
+        const monthIdx = currentCalendarDate.getMonth();
+        
+        calendarMonthYearHeader.innerText = `${months[monthIdx]} ${year}`;
+        
+        // compute bounds
+        const firstDayOfMonthIndex = new Date(year, monthIdx, 1).getDay();
+        const totalDaysInMonth = new Date(year, monthIdx + 1, 0).getDate();
+
+        // render grid blanks first
+        calendarDaysContainer.innerHTML = "";
+        for(let i = 0; i < firstDayOfMonthIndex; i++) {
+          const blankBlock = document.createElement("div");
+          blankBlock.className = "p-2 opacity-0";
+          calendarDaysContainer.appendChild(blankBlock);
+        }
+
+        // render active days
+        const currentDateTodayNum = new Date().getDate();
+        const currentCalendarDateIsNowMonth = (new Date().getMonth() === monthIdx && new Date().getFullYear() === year);
+
+        for(let day = 1; day <= totalDaysInMonth; day++) {
+          const dayButton = document.createElement("button");
+          dayButton.innerText = day;
+          dayButton.className = "p-2 rounded-lg border border-glassBorder/20 text-[#f5f0eb] hover:border-gold-primary hover:text-gold-primary transition duration-300 font-sans cursor-hover bg-black/20 text-xs";
+          
+          if(currentCalendarDateIsNowMonth && day < currentDateTodayNum) {
+            dayButton.disabled = true;
+            dayButton.className += " opacity-25 cursor-not-allowed";
+          } else {
+            dayButton.addEventListener("click", () => selectCalendarDay(dayButton, day));
+          }
+          calendarDaysContainer.appendChild(dayButton);
+        }
+        applyCursorEffects(); // bind cursor events to new elements
+      }
+
+      function changeMonth(dir) {
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir);
+        initializeCalendar();
+      }
+
+      function selectCalendarDay(btn, day) {
+        document.querySelectorAll("#calendar-days-container button").forEach(b => {
+          b.classList.remove("calendar-day-active");
+        });
+        btn.classList.add("calendar-day-active");
+        
+        const yr = currentCalendarDate.getFullYear();
+        const mt = months[currentCalendarDate.getMonth()];
+        selectedDateStr = `${mt} ${day}, ${yr}`;
+        updateBookingInvoice();
+      }
+
+      function selectTimeSlot(btn, time) {
+        document.querySelectorAll(".time-slot").forEach(s => {
+          s.classList.remove("border-gold-primary", "text-gold-primary", "bg-gold-primary/10");
+        });
+        btn.classList.add("border-gold-primary", "text-gold-primary", "bg-gold-primary/10");
+        selectedTimeStr = time;
+        updateBookingInvoice();
+      }
+
+      function updateBookingInvoice() {
+        const propName = document.getElementById("schedule-property-select").value;
+        const invoiceDiv = document.getElementById("booking-invoice");
+        
+        document.getElementById("invoice-estate-name").innerText = `Estate: ${propName}`;
+        if(selectedDateStr && selectedTimeStr) {
+          document.getElementById("invoice-date-time").innerText = `Schedule: ${selectedDateStr} @ ${selectedTimeStr}`;
+          invoiceDiv.classList.remove("hidden");
+        } else if (selectedDateStr) {
+          document.getElementById("invoice-date-time").innerText = `Schedule Date: ${selectedDateStr} (Select Time)`;
+          invoiceDiv.classList.remove("hidden");
+        }
+      }
+
+      // select property input change tracking
+      document.getElementById("schedule-property-select").addEventListener("change", updateBookingInvoice);
+
+      // Open booking directly from any property card
+      function openBooking(propertyName) {
+        document.getElementById("schedule-property-select").value = propertyName;
+        updateBookingInvoice();
+        scrollToSection("scheduler");
+      }
+
+      // Final Booking confirmation
+      function confirmSchedule() {
+        const clientName = document.getElementById("schedule-name").value.trim();
+        const clientPhone = document.getElementById("schedule-phone").value.trim();
+        const propName = document.getElementById("schedule-property-select").value;
+
+        if(!clientName || !clientPhone) {
+          alert("We request you provide credentials for high-security identification authorization.");
+          return;
+        }
+        if(!selectedDateStr || !selectedTimeStr) {
+          alert("Please specify appointment date and timing details.");
+          return;
+        }
+
+        alert(`Correspondence secured, H.R.H. ${clientName}.\nYour security clearance pass for the private showcase tour of "${propName}" on ${selectedDateStr} at ${selectedTimeStr} is currently pending validation.`);
+      }
+
+      // CINEMATIC TESTIMONIALS SLIDER NAVIGATION
+      const testimonialSlider = document.getElementById("testimonial-carousel-slider");
+      
+      function setTestimonialSlide(index) {
+        activeTestimonialIndex = index;
+        const translationX = -index * 100;
+        testimonialSlider.style.transform = `translateX(${translationX}%)`;
+
+        // dot accent active class syncing
+        const dots = document.querySelectorAll(".nav-dot");
+        dots.forEach((dot, dIdx) => {
+          if(dIdx === index) {
+            dot.classList.remove("bg-glassBorder");
+            dot.classList.add("bg-gold-primary");
+          } else {
+            dot.classList.remove("bg-gold-primary");
+            dot.classList.add("bg-glassBorder");
+          }
+        });
+      }
+
+      // TESTIMONIAL CONTINUOUS CAROUSEL CYCLE LOOPER
+      let testimonialInterval = setInterval(() => {
+        let targetIdx = (activeTestimonialIndex + 1) % 2;
+        setTestimonialSlide(targetIdx);
+      }, 8000);
+
+      document.getElementById("testimonials").addEventListener("mouseenter", () => clearInterval(testimonialInterval));
+
+      // LEAD INPUT CAPTURE FORM SUBMISSION
+      function handleInquiry(e) {
+        e.preventDefault();
+        alert("Sovereign mandate registered successfully. Your partner panel agent is validating security clearances and will originate encryption correspondence.");
+        document.getElementById("leadForm").reset();
+      }
+    </script>
+  </body>
+</html>

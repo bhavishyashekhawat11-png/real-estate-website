@@ -1,0 +1,6 @@
+{
+  "name": "Luxury Real Estate Website",
+  "description": "A high-end luxury real estate showcase for premium properties with interactive animations, visualizers, and booking forms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
